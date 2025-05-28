@@ -1,5 +1,8 @@
 import { useNavigation, useRouter } from 'expo-router';
+import React, { useState } from 'react';
 import { FlatList, Image, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+
+const data1 = ["All", "Men's", "Woman", "Children", "Adult", "Teen"];
 
 const data2 = [
   {
@@ -78,16 +81,17 @@ const data2 = [
 
 const Goods = () => {
   const router = useRouter();
-  const navigation= useNavigation();
+  const navigation = useNavigation();
+  const [selectedCategory, setSelectedCategory] = useState('All');
 
   return (
     <View style={styles.container}>
       <View style={{ flexDirection: 'row', justifyContent: 'space-between', paddingTop: 30 }}>
         <View>
           <Text style={{ color: '#C24747', fontWeight: 'bold', fontSize: 25 }}> Welcome back!</Text>
-          <Text style={{ fontSize: 15, fontWeight:'700', marginLeft: 25,marginBottom: 15 }}>Aleena shaheen</Text>
+          <Text style={{ fontSize: 15, fontWeight: '700', marginLeft: 25, marginBottom: 15 }}>Aleena shaheen</Text>
         </View>
-        <TouchableOpacity onPress={()=>navigation.navigate("Notification")}>
+        <TouchableOpacity onPress={() => navigation.navigate("Notification")}>
           <Image
             source={{
               uri: 'https://img.icons8.com/?size=100&id=68376&format=png&color=000000',
@@ -96,18 +100,16 @@ const Goods = () => {
           <Text style={{ position: 'absolute', right: 5, fontSize: 13, color: 'white', backgroundColor: 'red', paddingHorizontal: 3, borderRadius: 10 }}>5</Text>
         </TouchableOpacity>
       </View>
-      
-      <View style={{height: 50, backgroundColor: '#efefef', justifyContent: 'space-between', flexDirection: 'row', borderRadius: 15, alignItems: 'center', marginBottom: 20}}>
+
+      <View style={{ height: 50, backgroundColor: '#efefef', justifyContent: 'space-between', flexDirection: 'row', borderRadius: 15, alignItems: 'center', marginBottom: 20 }}>
         <TouchableOpacity style={{ flexDirection: 'row', marginLeft: 10 }}>
-          <TouchableOpacity onPress={()=>navigation.navigate("search")}>
-          <Image
-            source={{
-              uri: 'https://img.icons8.com/?size=100&id=59878&format=png&color=000000',
-            }} style={{ height: 25, width: 25, marginHorizontal: 10, alignSelf: 'center', margin: 10}}
-          />
+          <TouchableOpacity onPress={() => navigation.navigate("search")}>
+            <Image
+              source={{
+                uri: 'https://img.icons8.com/?size=100&id=59878&format=png&color=000000',
+              }} style={{ height: 25, width: 25, marginHorizontal: 10, alignSelf: 'center', margin: 10 }} />
           </TouchableOpacity>
-          <TextInput style={{ fontSize: 18}} placeholder="Search" placeholderTextColor={'black'} />
-          
+          <TextInput style={{ fontSize: 18 }} placeholder="Search" placeholderTextColor={'black'} />
         </TouchableOpacity>
         <TouchableOpacity>
           <Image
@@ -118,41 +120,56 @@ const Goods = () => {
         </TouchableOpacity>
       </View>
 
-      <View style={{ height: 200, backgroundColor: '#C24747', marginBottom: 40, flexDirection: 'row', paddingHorizontal: 25, borderRadius: 15, justifyContent: 'space-between'}}>
-        <View style={{alignItems: 'center', justifyContent: 'center'}}>
+      <View style={{ height: 200, backgroundColor: '#C24747', marginBottom: 20, flexDirection: 'row', paddingHorizontal: 25, borderRadius: 15, justifyContent: 'space-between' }}>
+        <View style={{ alignItems: 'center', justifyContent: 'center' }}>
           <Text style={{ color: 'white', lineHeight: 40, fontSize: 20, fontWeight: 'bold' }}>
             Shop with us! {'\n'}Get 50% off  {'\n'}on items
           </Text>
           <View style={{ height: 50, width: 100, alignItems: 'center', justifyContent: 'center', backgroundColor: '#F8F8FF', borderRadius: 13 }}>
-            <Text style={{ color: 'black', fontSize: 15, fontWeight: '600'}}> Now</Text>
+            <Text style={{ color: 'black', fontSize: 15, fontWeight: '600' }}> Now</Text>
           </View>
         </View>
-
-        <View style={{ height: 190, width: 130, alignSelf: 'center', alignItems: 'center'}}>
-          <Image source={require('../assets/images/pc.png')} style={{height:160, width: 160}}/>
+        <View style={{ height: 190, width: 130, alignSelf: 'center', alignItems: 'center' }}>
+          <Image source={require('../assets/images/pc.png')} style={{ height: 160, width: 160 }} />
         </View>
       </View>
 
+    <View style={{ marginBottom: 20,}}>
+  <FlatList
+    data={data1}
+    horizontal
+    showsHorizontalScrollIndicator={false}
+    contentContainerStyle={{ paddingHorizontal: 10 }}
+    keyExtractor={(item) => item}
+    renderItem={({ item }) => (
+      <TouchableOpacity
+        onPress={() => setSelectedCategory(item)}
+        style={{ backgroundColor: selectedCategory === item ? '#C24747' : '#efefef', paddingHorizontal: 15, paddingVertical: 8, borderRadius: 20, marginRight: 10,}}>
+        <Text style={{ color: selectedCategory === item ? 'white' : 'black', fontWeight: '600', fontSize: 16 }}>{item}</Text>
+      </TouchableOpacity>
+    )}
+  />
+</View>
       <FlatList
         data={data2}
         keyExtractor={(item) => item.id.toString()}
         numColumns={2}
-       
         columnWrapperStyle={{ justifyContent: 'space-between' }}
+        showsVerticalScrollIndicator={false}
         renderItem={({ item }) => (
           <TouchableOpacity
             onPress={() => router.push(`/product?id=${item.id}`)}
-            style={{marginBottom: 8, padding: 10, borderBottomWidth: 1, borderColor: '#ccc',  marginHorizontal: 5, flex: 1}}>
+            style={{ marginBottom: 8, padding: 10, borderBottomWidth: 1, borderColor: '#ccc', marginHorizontal: 5, flex: 1 }}>
             <View>
-              <Image source={{ uri: item.productpic }} style={{ height: 200, width: '100%'}}/>
+              <Image source={{ uri: item.productpic }} style={{ height: 200, width: '100%' }} />
               <Image
                 source={{ uri: item.heart }}
-                style={{ height: 25, width: 25, position: 'absolute', top: 10, right: 10}}
+                style={{ height: 25, width: 25, position: 'absolute', top: 10, right: 10 }}
               />
             </View>
-            <View style={{ flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'black',}}>{item.productname}</Text>
-            <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'red'}}>{item.amount}</Text>
+            <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+              <Text style={{ fontSize: 20, fontWeight: 'bold', color: 'black', }}>{item.productname}</Text>
+              <Text style={{ fontSize: 18, fontWeight: 'bold', color: 'red' }}>{item.amount}</Text>
             </View>
           </TouchableOpacity>
         )}

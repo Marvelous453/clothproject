@@ -22,9 +22,6 @@ export default function Thank() {
       <TouchableOpacity style={{ backgroundColor: '#D9534F',  paddingVertical: 12, paddingHorizontal: 50, borderRadius: 20,}}>
         <Text style={{ textAlign: 'center', color: 'white', fontSize: 25, fontWeight: '700'}}> Thank u</Text>
       </TouchableOpacity>
-     
-
-      
     </View>
   )
 }

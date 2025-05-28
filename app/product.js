@@ -97,7 +97,7 @@ const Product = () => {
          <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center' }}>
           <FlatList
             data={sizes}
-            horizontal
+            horizontal={true}
             keyExtractor={(item) => item}
             renderItem={({ item }) => (
               <TouchableOpacity style={{ borderWidth: 1, paddingVertical: 10, paddingHorizontal: 16, borderRadius: 5, borderColor: '#ccc', marginRight: 10, backgroundColor: item === 'M' ? 'red' : 'white' }}>

@@ -35,16 +35,16 @@ export default function Signin() {
      style={{ height: 40, width: 40}}
     />
     </View>
-      <TouchableOpacity onPress={() => navigation.navigate("Bottom")}>
+      <TouchableOpacity onPress={() => navigation.navigate("Verification")}>
       <View style={{backgroundColor: 'red', padding: 10, borderRadius: 10, alignItems: 'center',}}>
-        <Text style={{ fontWeight: 'bold', fontSize: 25, color: 'white',}}>Sign in</Text>
+        <Text style={{ fontWeight: 'bold', fontSize: 25, color: 'white',}}>Sign Up</Text>
         </View>
         </TouchableOpacity>
       
 <View style={{flexDirection:'row'}}>
-      <Text style={{ color: 'black', textAlign: 'center', marginLeft: 10}}>  Doesn't I Have an account?</Text>
+      <Text style={{ color: 'black', textAlign: 'center', marginLeft: 10}}>  Already Have An account?</Text>
       <TouchableOpacity onPress={() => navigation.navigate("RegisteLogrScreen")}>
-      <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 18, textAlign: 'center'}}> Sign up</Text>
+      <Text style={{ color: 'red', fontWeight: 'bold', fontSize: 18, textAlign: 'center'}}> Sign In</Text>
 </TouchableOpacity>
         </View>
     </View>

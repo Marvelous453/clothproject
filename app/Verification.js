@@ -6,9 +6,11 @@ export default function Verification() {
   return (
     <View style={styles.container}>
      <View style={{ flexDirection:'row', paddingTop: 30, marginBottom: 70}}>
+      <TouchableOpacity onPress={() => navigation.goBack()}>
         <Image
           source={{ uri: 'https://img.icons8.com/?size=100&id=40217&format=png&color=000000' }}
           style={{ height: 30, width: 30, backgroundColor: 'gray'}} />
+          </TouchableOpacity>
         <Text style={{ fontSize: 20, fontWeight: 'bold', marginLeft: 20, color: 'black'}}> OTP code Verification</Text>
       </View>
       <Text style={{ fontSize: 12, textAlign: 'center', fontWeight: 'bold', color: 'black'}}> Code has been send to +111**********99</Text>
